@@ -72,3 +72,19 @@ INSERT INTO idiomas_cursos(id_curso, id_idioma) VALUES (4,4);
 INSERT INTO matricula (id, id_estudiante, id_curso) VALUES (1, 1, 1);
 INSERT INTO matricula (id, id_estudiante, id_curso) VALUES (2, 2, 2);
 INSERT INTO matricula (id, id_estudiante, id_curso) VALUES (3, 3, 4);
+
+
+--CONSULTAS
+SELECT estudiantes.nombre, idiomas.nombre
+FROM idiomas
+INNER JOIN idiomas_estudiantes ON idiomas_estudiantes.id_idioma = idiomas.id
+INNER JOIN estudiantes ON estudiantes.id = idiomas_estudiantes.id_estudiante
+WHERE estudiantes.identificacion = '125';
+
+SELECT estudiantes.nombre, cursos.nombre,cursos.fecha_inicio, cursos.fecha_finalizacion, idiomas.nombre
+FROM idiomas
+INNER JOIN idiomas_estudiantes ON idiomas_estudiantes.id_idioma = idiomas.id
+INNER JOIN estudiantes ON estudiantes.id = idiomas_estudiantes.id_estudiante
+INNER JOIN matricula ON matricula.id_estudiante = estudiantes.id
+INNER JOIN cursos ON cursos.id = matricula.id_curso
+WHERE estudiantes.identificacion = '125';
